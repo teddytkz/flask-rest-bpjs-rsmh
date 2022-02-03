@@ -26,50 +26,51 @@ secret = config['BPJS_SECRET_KEY']
 user_key = config['BPJS_USER_KEY']
 is_encrypt = config['IS_ENCRYPT']
 
-def save_sep_req(data):
-    request = data['request']['t_sep']
+def save_sep_req(data,status):
+    data_request = data['request']['t_sep']
     data_sep_req = sepRequest(
-        noKartu = data['noKartu'],
-        tglSep = data['noKartu'],
-        ppkPelayanan = data['noKartu'],
-        # klsRawat_klsRawatHak = 
-        # klsRawat_klsRawatNaik = 
-        # klsRawat_pembiayaan = 
-        # klsRawat_penanggung_jawab = 
-        # noMR =
-        # rujukan_asalRujukan = 
-        # rujukan_tglRujukan = 
-        # rujukan_noRujukan = 
-        # rujukan_ppkRujukan = 
-        # catatan = 
-        # diagAwal = 
-        # poli_tujuan = 
-        # poli_eksekutif = 
-        # cob = 
-        # katarak_katarak = 
-        # jaminan_lakaLantas = 
-        # jaminan_penjamin_tglKejadian = 
-        # jaminan_penjamin_keterangan = 
-        # jaminan_penjamin_suplesi_suplesi = 
-        # jaminan_penjamin_suplesi_noSepSuplesi = 
-        # jaminan_penjamin_suplesi_lokasiLaka_kdPropinsi = 
-        # jaminan_penjamin_suplesi_lokasiLaka_kdKabupaten = 
-        # jaminan_penjamin_suplesi_lokasiLaka_kdKecamatan = 
-        # tujuanKunj = 
-        # flagProcedure = 
-        # kdPenunjang = 
-        # assesmentPel = 
-        # skdp_noSurat = 
-        # skdp_kodeDPJP = 
-        # dpjpLayan = 
-        # noTelp = 
-        # user = 
-        # created_at = 
-        # updated_at = 
+        status_created_sep = status,
+        noKartu = data_request['noKartu'],
+        tglSep = data_request['tglSep'],
+        ppkPelayanan = data_request['ppkPelayanan'],
+        jnsPelayanan = data_request['jnsPelayanan'],
+        klsRawat_klsRawatHak = data_request['klsRawat']['klsRawatHak'],
+        klsRawat_klsRawatNaik = data_request['klsRawat']['klsRawatNaik'],
+        klsRawat_pembiayaan = data_request['klsRawat']['pembiayaan'],
+        klsRawat_penanggung_jawab = data_request['klsRawat']['penanggungJawab'],
+        noMR = data_request['noMR'],
+        rujukan_asalRujukan = data_request['rujukan']['asalRujukan'],
+        rujukan_tglRujukan = data_request['rujukan']['tglRujukan'],
+        rujukan_noRujukan = data_request['rujukan']['noRujukan'],
+        rujukan_ppkRujukan = data_request['rujukan']['ppkRujukan'],
+        catatan = data_request['catatan'],
+        diagAwal = data_request['diagAwal'],
+        poli_tujuan = data_request['poli']['tujuan'],
+        poli_eksekutif = data_request['poli']['eksekutif'],
+        cob = data_request['cob']['cob'],
+        katarak_katarak = data_request['katarak']['katarak'],
+        jaminan_lakaLantas = data_request['jaminan']['lakaLantas'],
+        jaminan_noLP = data_request['jaminan']['noLP'],
+        jaminan_penjamin_tglKejadian = data_request['jaminan']['penjamin']['tglKejadian'],
+        jaminan_penjamin_keterangan = data_request['jaminan']['penjamin']['keterangan'],
+        jaminan_penjamin_suplesi_suplesi = data_request['jaminan']['penjamin']['suplesi']['suplesi'],
+        jaminan_penjamin_suplesi_noSepSuplesi = data_request['jaminan']['penjamin']['suplesi']['noSepSuplesi'],
+        jaminan_penjamin_suplesi_lokasiLaka_kdPropinsi = data_request['jaminan']['penjamin']['suplesi']['lokasiLaka']['kdPropinsi'],
+        jaminan_penjamin_suplesi_lokasiLaka_kdKabupaten = data_request['jaminan']['penjamin']['suplesi']['lokasiLaka']['kdKabupaten'],
+        jaminan_penjamin_suplesi_lokasiLaka_kdKecamatan = data_request['jaminan']['penjamin']['suplesi']['lokasiLaka']['kdKecamatan'],
+        tujuanKunj = data_request['tujuanKunj'],
+        flagProcedure = data_request['flagProcedure'],
+        kdPenunjang = data_request['kdPenunjang'],
+        assesmentPel = data_request['assesmentPel'],
+        skdp_noSurat = data_request['skdp']['noSurat'],
+        skdp_kodeDPJP = data_request['skdp']['kodeDPJP'],
+        dpjpLayan = data_request['dpjpLayan'],
+        noTelp = data_request['noTelp'],
+        user = data_request['user'],
     )
     db.session.add(data_sep_req)
     db.session.commit()
-    return 'Save To DB'
+    return 'Success Save To DB'
 
 def save_sep_res(data):
     response = data['response']['sep']
