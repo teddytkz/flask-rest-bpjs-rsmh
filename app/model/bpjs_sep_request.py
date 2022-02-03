@@ -23,6 +23,7 @@ class sepRequest(db.Model):
     cob = db.Column(db.String(250),nullable=True)
     katarak_katarak = db.Column(db.String(250),nullable=True)
     jaminan_lakaLantas = db.Column(db.String(250),nullable=True)
+    jaminan_noLP = db.Column(db.String(250),nullable=True)
     jaminan_penjamin_tglKejadian = db.Column(db.String(250),nullable=True)
     jaminan_penjamin_keterangan = db.Column(db.String(250),nullable=True)
     jaminan_penjamin_suplesi_suplesi = db.Column(db.String(250),nullable=True)
