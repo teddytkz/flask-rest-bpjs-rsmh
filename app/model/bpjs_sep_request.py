@@ -38,6 +38,7 @@ class sepRequest(db.Model):
     dpjpLayan = db.Column(db.String(250),nullable=True)
     noTelp = db.Column(db.String(250),nullable=True)
     user = db.Column(db.String(250),nullable=True)
+    status_created_sep = db.Column(db.String(250),nullable=True)
     created_at = db.Column(db.DateTime,default=datetime.utcnow)
     updated_at = db.Column(db.DateTime,default=datetime.utcnow)
 
