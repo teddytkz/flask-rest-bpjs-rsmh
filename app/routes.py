@@ -183,20 +183,34 @@ def sep_insert():
     method = 'post'
     data = request.get_json()
     payload = data
+    status = '0'
     send_sep = BpjsController.bridging_data(end_point,method,payload)
-    # save_req = DataController.sa
     if(send_sep['metaData']['code']=="200"):
-        # save_data_sep = {
-        #     "status" : send_sep['metaData']['code'],
-        #     "message" : send_sep['metaData']['message']
-        # }
+        status = '1'
         save_data_sep = DataController.save_sep_res(send_sep)
-    elif(send_sep['metaData']['code']=="201"):
-        save_data_sep = {
-            "status" : send_sep['metaData']['code'],
-            "message" : send_sep['metaData']['message']
+        save_sep_req = DataController.save_sep_req(data,status)
+        res_data_sep = {
+            "metadata":{
+                "status" : send_sep['metaData']['code'],
+                "message" : send_sep['metaData']['message'],
+            },
+            "data":{
+                "status_save" : save_sep_req,
+                "nomor_sep" : send_sep['response']['sep']['noSep']
+            }
         }
-    return save_data_sep
+    elif(send_sep['metaData']['code']=="201"):
+        save_sep_req = DataController.save_sep_req(data,status)
+        res_data_sep = {
+            "metadata":{
+                "status" : send_sep['metaData']['code'],
+                "message" : send_sep['metaData']['message'],
+            },
+            "data":{
+                "status_save" : save_sep_req
+            }
+        }
+    return res_data_sep
 
 @app.route('/api/sep',methods=['GET'])
 def sep_search():
