@@ -14,9 +14,20 @@ def rencanakontrol_cari_sep():
     return BpjsController.bridging(end_point,method,payload)
 
 @app.route('/api/rencanakontrol/cari/suratkontrol')
-def rencanakontrol_cari_ suratkontrol():
+def rencanakontrol_cari_suratkontrol():
     no_surat_kontrol = request.args.get('nosuratkontrol')
     end_point = 'RencanaKontrol/noSuratKontrol/'+no_surat_kontrol
+    method = 'get'
+    payload = ''
+    return BpjsController.bridging(end_point,method,payload)
+
+@app.route('/api/rencanakontrol/cari/suratkontrol/nokartu')
+def rencanakontrol_cari_suratkontrol_nokartu():
+    bulan = request.args.get('bulan')
+    tahun = request.args.get('tahun')
+    nokartu = request.args.get('nokartu')
+    filter_format = request.args.get('filter') #1. Tanggal Entry 2. Tanggal Rencana Kontrol
+    end_point = 'RencanaKontrol/ListRencanaKontrol/Bulan'+bulan+'/Tahun/'+tahun+'/nokartu/'+nokartu+'/filter/'+filter_format
     method = 'get'
     payload = ''
     return BpjsController.bridging(end_point,method,payload)
