@@ -4,7 +4,6 @@ from flask import Flask,request,jsonify
 from app.controller import BpjsController
 from app.controller import DataController
 
-
 @app.route('/api/rencanakontrol/cari/sep',methods=['GET'])
 def rencanakontrol_cari_sep():
     no_sep = request.args.get('no_sep')
