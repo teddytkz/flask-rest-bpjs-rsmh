@@ -4,6 +4,29 @@ from flask import Flask,request,jsonify
 from app.controller import BpjsController
 from app.controller import DataController
 
+@app.route('/api/referensi/propinsi',methods=['GET'])
+def referensi_propinsi():
+    end_point='referensi/propinsi'
+    method = 'get'
+    payload = ''
+    return BpjsController.bridging(end_point,method,payload)
+
+@app.route('/api/referensi/kabupaten',methods=['GET'])
+def referensi_kabupaten():
+    kode_propinsi = request.args.get('kode_propinsi')
+    end_point='referensi/kabupaten/propinsi/'+kode_propinsi
+    method = 'get'
+    payload = ''
+    return BpjsController.bridging(end_point,method,payload)
+
+@app.route('/api/referensi/kecamatan',methods=['GET'])
+def referensi_kecamatan():
+    kode_kabupaten = request.args.get('kode_kabupaten')
+    end_point='referensi/kecamatan/kabupaten/'+kode_kabupaten
+    method = 'get'
+    payload = ''
+    return BpjsController.bridging(end_point,method,payload)
+
 @app.route('/api/referensi/faskes',methods=['GET'])
 def referensi_faskes():
     # data = request.get_json()
