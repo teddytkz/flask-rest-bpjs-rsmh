@@ -12,4 +12,6 @@ migrate = Migrate(app,db)
 
 from app.model import bpjs_sep_response
 from app.model import bpjs_sep_request
+from app.model import bpjs_rencana_kontrol_response
+from app.model import bpjs_rencana_ri_response
 from app import routes
