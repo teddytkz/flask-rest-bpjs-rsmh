@@ -14,6 +14,8 @@ from flask_cors import CORS
 
 from app.model.bpjs_sep_request import sepRequest
 from app.model.bpjs_sep_response import sepResponse
+from app.model.bpjs_rencana_ri_response import rencanaRiResponse
+from app.model.bpjs_rencana_kontrol_response import rencanaKontrolResponse
 
 
 app = Flask(__name__)
@@ -105,3 +107,46 @@ def save_sep_res(data):
             # "datax" : data
         }
     return save_data_sep
+
+def save_spri_res(data):
+    response = data['response']
+    data_spri_res = rencanaRiResponse(
+        noSPRI = response['noSPRI'],
+        tglRencanaKontrol = response['tglRencanaKontrol'],
+        namaDokter = response['namaDokter'],
+        noKartu = response['noKartu'],
+        nama = response['nama'],
+        kelamin = response['kelamin'],
+        tlgLahir = response['tglLahir'],
+        namaDiagnosa = response['namaDiagnosa'],
+    )
+    db.session.add(data_spri_res)
+    db.session.commit()
+    save_data_spri = {
+            "status" : data['metaData']['code'],
+            "message" : data['metaData']['message'],
+            "nosep" : data['response']['noSPRI'],
+            # "datax" : data
+        }
+    return save_data_spri
+
+def save_rencana_kontrol_res(data):
+    response = data['response']
+    data_rencana_kontrol_res = rencanaKontrolResponse(
+        noSuratKontrol = response['noSuratKontrol'],
+        tglRencanaKontrol = response['tglRencanaKontrol'],
+        namaDokter = response['namaDokter'],
+        noKartu = response['noKartu'],
+        nama = response['nama'],
+        kelamin = response['kelamin'],
+        tlgLahir = response['tglLahir']
+    )
+    db.session.add(data_rencana_kontrol_res)
+    db.session.commit()
+    save_data_rencana_kontrol = {
+            "status" : data['metaData']['code'],
+            "message" : data['metaData']['message'],
+            "nosep" : data['response']['noSuratKontrol'],
+            # "datax" : data
+        }
+    return save_data_rencana_kontrol
