@@ -54,3 +54,11 @@ def sep_2_delete():
     method = 'delete'
     payload = data
     return BpjsController.bridging(end_point,method,payload)
+
+@app.route('/api/sep/2.0/updatetanggalpulang')
+def update_tanggal_pulang():
+    data = request.get.json()
+    end_point = 'SEP/2.0/updtglplg'
+    method = 'put'
+    payload = data
+    return BpjsController.bridging(end_point,method,payload)
