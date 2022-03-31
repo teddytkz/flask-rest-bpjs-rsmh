@@ -105,3 +105,27 @@ def rencanakontrol_list_dokter_spesialistik():
     payload = ''
     end_point = 'RencanaKontrol/JadwalPraktekDokter/JnsKontrol/'+jenis_kontrol+'/KdPoli/'+kode_poli+'/TglRencanaKontrol/'+tanggal_rencana_kontrol
     return BpjsController.bridging(end_point,method,payload)
+
+# @app.route('/api/rencanakontrol/update')
+# def rencanakontrol_update():
+#     no_surat_kontrol = request.args.get('no_surat_kontrol')
+#     no_sep = request.args.get('no_sep')
+#     kode_dokter = request.args.get('kode_dokter')
+#     poli_kontrol = request.args.get('poli_kontrol')
+#     tgl_rencana_kontrol = request.args.get('tgl_rencana_kontrol')
+
+@app.route('/api/rencanakontrol/delete')
+def rencanakontrol_delete():
+    no_surat_kontrol = request.args.get('no_surat_kontrol')
+    method = 'delete'
+    payload = {
+        "request":{
+            "t_suratkontrol":{
+                "noSuratKontrol": no_surat_kontrol,
+                "user": "Teddy"
+            }
+        }
+    }
+    end_point = 'RencanaKontrol/Delete'
+    return BpjsController.bridging(end_point,method,payload)
+
